@@ -1,0 +1,10 @@
+isScam = true
+This is a Nigerian Prince “419” scam! These types of scams typically attempt to gain a money payment from the victim.
+The scammer will have you believe that they have vast wealth that is ‘frozen’ due to political persecution, government restrictions or tax codes.
+They will ask that you supply a fee to ‘unfreeze’ the money, for which you will be rewarded with a large portion of the original wealth and massive returns on investment.
+Be cautious with this scam, as you will not receive the funds promised!
+
+Scam Indicators
+1.	Unsaved Number
+2.	Upfront Payment
+3.	Promise of Payoff
