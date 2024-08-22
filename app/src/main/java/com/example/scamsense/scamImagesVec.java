@@ -27,7 +27,7 @@ public class scamImagesVec {
         Log.d("PRINTCONSOLE", "loadVector variables loaded.");
 
         for (int i = 1; i <= imageCount; i++) {
-            String directoryPath = "scamimages/" + i;
+            String directoryPath = "scamImages/" + i;
             Log.d("PRINTCONSOLE", "Attempting to load assets from: " + directoryPath);
 
             try {
@@ -38,6 +38,7 @@ public class scamImagesVec {
 
                 // Open the text file
                 InputStream inputStream = assetManager.open(directoryPath + "/text.txt");
+                Log.d("PRINTCONSOLE", "input stream opened.");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 Log.d("PRINTCONSOLE", "Text file opened.");
 

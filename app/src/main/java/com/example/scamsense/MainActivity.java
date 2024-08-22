@@ -1,5 +1,6 @@
 package com.example.scamsense;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -35,15 +36,10 @@ public class MainActivity extends AppCompatActivity {
         //informationButton = findViewById(R.id.btnInformation);
 
         scamImagesVec scamImages = new scamImagesVec();
-        Log.d("PRINTCONSOLE", "object create");
         scamImages.loadVector(getAssets());
-        Log.d("PRINTCONSOLE", "loadvector");
         loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getFileLocation());
-        Log.d("PRINTCONSOLE", "loadimage");
 
         scamButton.setOnClickListener(v -> {
-            Log.d("PRINTCONSOLE", String.valueOf(scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getScamStatus()));
-            Log.d("PRINTCONSOLE", scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getSubtext());
             if (scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getScamStatus()){
                 // some type of comfirmation that the answer was correct
                 Log.d("PRINTCONSOLE", "scam button pressed, answer correct.");
@@ -56,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         safeButton.setOnClickListener(v -> {
-            Log.d("PRINTCONSOLE", String.valueOf(scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getScamStatus()));
-            Log.d("PRINTCONSOLE", scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getSubtext());
             if (!scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getScamStatus()){
                 // some type of comfirmation that the answer was correct
                 Log.d("PRINTCONSOLE", "safe button pressed, answer correct.");
@@ -89,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
         AssetManager assetManager = getAssets();
         try {
             // open the file from assets using the AssetManager
-            InputStream istr = assetManager.open(filePath);
+            InputStream inputStream = assetManager.open(filePath);
             // decode the input stream to a Bitmap
-            Bitmap bitmap = BitmapFactory.decodeStream(istr);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             // set the Bipmap to the ImageView
             scamImageView.setImageBitmap(bitmap);
-            istr.close();
+            inputStream.close();
         } catch (IOException e) {
             // catch for a java exception (just in case)
             e.printStackTrace();
