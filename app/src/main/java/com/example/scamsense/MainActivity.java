@@ -1,9 +1,11 @@
 package com.example.scamsense;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -35,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.btnNext);
         informationButton = findViewById(R.id.btnInformation);
 
+        // makes next and info buttons unable to be clicked
+        nextButton.setClickable(false);
+        informationButton.setClickable(false);
+
+        // makes next and info buttons invisible
+        nextButton.setVisibility(View.INVISIBLE);
+        informationButton.setVisibility(View.INVISIBLE);
+
         scamImagesVec scamImages = new scamImagesVec();
         scamImages.loadVector(getAssets());
         loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getFileLocation());
@@ -49,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
             }
             loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getOverlayFileLocation());
             // updateScamImage();
+
+            // make the next button visible.
+            nextButton.setClickable(true);
+            informationButton.setClickable(true);
+
+            // make the information button visible.
+            nextButton.setVisibility(View.VISIBLE);
+            informationButton.setVisibility(View.VISIBLE);
         });
 
         safeButton.setOnClickListener(v -> {
@@ -61,18 +79,33 @@ public class MainActivity extends AppCompatActivity {
             }
 
             loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getOverlayFileLocation());
+
             // make the next button visible.
+            nextButton.setClickable(true);
+            informationButton.setClickable(true);
+
             // make the information button visible.
+            nextButton.setVisibility(View.VISIBLE);
+            informationButton.setVisibility(View.VISIBLE);
+
         });
 
         nextButton.setOnClickListener(v -> {
+            // tries to update image but not sure how to get to the next image
             scamImages.nextImage();
             loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getFileLocation());
-            // make the next button invisible.
-            // make the information button invisible.
+
+            // makes next and info buttons unable to be clicked
+            nextButton.setClickable(false);
+            informationButton.setClickable(false);
+
+            // makes next and info buttons invisible
+            nextButton.setVisibility(View.INVISIBLE);
+            informationButton.setVisibility(View.INVISIBLE);
         });
 
         informationButton.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Pop.class));
             // make the information{getSubtext()} visible in a nice area.
 
             // if click again, hide the information.
