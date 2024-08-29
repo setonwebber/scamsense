@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         scamImage = findViewById(R.id.scamImage);
         scamButton = findViewById(R.id.btnScam);
         safeButton = findViewById(R.id.btnSafe);
-        //nextButton = findViewById(R.id.btnNext);
-        //informationButton = findViewById(R.id.btnInformation);
+        nextButton = findViewById(R.id.btnNext);
+        informationButton = findViewById(R.id.btnInformation);
 
         scamImagesVec scamImages = new scamImagesVec();
         scamImages.loadVector(getAssets());
@@ -65,18 +65,21 @@ public class MainActivity extends AppCompatActivity {
             // make the information button visible.
         });
 
-//        nextButton.setOnClickListener(v -> {
-//            nextImage();
-//            loadImageFromAssets(scamImage, getFileLocation());
-//            // make the next button invisible.
-//            // make the information button invisible.
-//        });
-//
-//        informationButton.setOnClickListener(v -> {
-//            // make the information{getSubtext()} visible in a nice area.
-//
-//            // if click again, hide the information.
-//        });
+        nextButton.setOnClickListener(v -> {
+            scamImages.nextImage();
+            loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getFileLocation());
+            // make the next button invisible.
+            // make the information button invisible.
+        });
+
+        informationButton.setOnClickListener(v -> {
+            // make the information{getSubtext()} visible in a nice area.
+
+            // if click again, hide the information.
+        });
+    }
+
+    private void nextImage() {
     }
 
     public void loadImageFromAssets(ImageView scamImageView, String filePath) {
