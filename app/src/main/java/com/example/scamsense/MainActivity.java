@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import android.content.res.AssetManager;
@@ -21,87 +21,75 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView scamImage;
-    private Button scamButton;
-    private Button safeButton;
-    private Button nextButton;
-    private Button informationButton;
+    private ImageButton scamButton;
+    private ImageButton safeButton;
+    private ImageButton nextButton;
+    private ImageButton backButton;
+    private ImageButton informationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // initialize all values
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         scamImage = findViewById(R.id.scamImage);
         scamButton = findViewById(R.id.btnScam);
         safeButton = findViewById(R.id.btnSafe);
         nextButton = findViewById(R.id.btnNext);
+        backButton = findViewById(R.id.btnBack);
         informationButton = findViewById(R.id.btnInformation);
 
-        // makes next and info buttons unable to be clicked
-        nextButton.setClickable(false);
-        informationButton.setClickable(false);
-
-        // makes next and info buttons invisible
-        nextButton.setVisibility(View.INVISIBLE);
-        informationButton.setVisibility(View.INVISIBLE);
-
+        // load scamimages list full of scam image objects.
         scamImagesVec scamImages = new scamImagesVec();
         scamImages.loadVector(getAssets());
-        loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getFileLocation());
 
+        // load the screen
+        loadScreen(scamImages);
+
+        // when the scam button is clicked.
         scamButton.setOnClickListener(v -> {
-            if (scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getScamStatus()){
+            scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+            if (currentImage.getScamStatus()){
                 // some type of comfirmation that the answer was correct
                 Log.d("PRINTCONSOLE", "scam button pressed, answer correct.");
             } else{
                 // some type of comfirmation that the answer was incorrect
                 Log.d("PRINTCONSOLE", "scam button pressed, answer incorrect.");
             }
-            loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getOverlayFileLocation());
-            // updateScamImage();
+            currentImage.setCompleted(true);
+            currentImage.setAnswer("scam");
 
-            // make the next button visible.
-            nextButton.setClickable(true);
-            informationButton.setClickable(true);
-
-            // make the information button visible.
-            nextButton.setVisibility(View.VISIBLE);
-            informationButton.setVisibility(View.VISIBLE);
+            loadScreen(scamImages);
         });
 
+        // when the safe button is clicked.
         safeButton.setOnClickListener(v -> {
-            if (!scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getScamStatus()){
+            scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+
+            if (!currentImage.getScamStatus()){
                 // some type of comfirmation that the answer was correct
                 Log.d("PRINTCONSOLE", "safe button pressed, answer correct.");
             } else{
                 // some type of comfirmation that the answer was incorrect
                 Log.d("PRINTCONSOLE", "safe button pressed, answer incorrect.");
             }
+            currentImage.setCompleted(true);
+            currentImage.setAnswer("safe");
 
-            loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getOverlayFileLocation());
+            Log.d("PRINTCONSOLE", String.valueOf(currentImage.getScamStatus()));
 
-            // make the next button visible.
-            nextButton.setClickable(true);
-            informationButton.setClickable(true);
-
-            // make the information button visible.
-            nextButton.setVisibility(View.VISIBLE);
-            informationButton.setVisibility(View.VISIBLE);
+            loadScreen(scamImages);
 
         });
 
         nextButton.setOnClickListener(v -> {
-            // tries to update image but not sure how to get to the next image
             scamImages.nextImage();
-            loadImageFromAssets(scamImage, scamImages.getScamImages().get(scamImages.getCurrentImageIndex()).getFileLocation());
+            loadScreen(scamImages);
+        });
 
-            // makes next and info buttons unable to be clicked
-            nextButton.setClickable(false);
-            informationButton.setClickable(false);
-
-            // makes next and info buttons invisible
-            nextButton.setVisibility(View.INVISIBLE);
-            informationButton.setVisibility(View.INVISIBLE);
+        backButton.setOnClickListener(v -> {
+            scamImages.backImage();
+            loadScreen(scamImages);
         });
 
         informationButton.setOnClickListener(v -> {
@@ -112,9 +100,68 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void nextImage() {
+    public void loadScreen(scamImagesVec scamImages){
+        scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+
+        // if we are at the first image...
+        if (scamImages.getCurrentImageIndex() == 0) {
+            // make the back button inactive.
+            backButton.setClickable(false);
+            backButton.setImageResource(R.drawable.back_inactive);
+        } else{ // at any other image.
+            // make the back button active.
+            backButton.setClickable(true);
+            backButton.setImageResource(R.drawable.back_active);
+        }
+
+        // if we are at the last image, or the image is not completed.
+        if (scamImages.getCurrentImageIndex() == scamImages.getScamImages().size() - 1 || !currentImage.getCompleted()) {
+            // make the next button inactive.
+            nextButton.setClickable(false);
+            nextButton.setImageResource(R.drawable.next_inactive);
+        } else{ // if we are at any other image that has also been completed.
+            // make the next button active.
+            nextButton.setClickable(true);
+            nextButton.setImageResource(R.drawable.next_active);
+        }
+
+        // If the current image hasnt been completed before.
+        if (!currentImage.getCompleted()){
+            // Set scam and safe buttons to default values.
+            scamButton.setClickable(true);
+            scamButton.setImageResource(R.drawable.scam);
+            safeButton.setClickable(true);
+            safeButton.setImageResource(R.drawable.safe);
+
+            // load image
+            loadImageFromAssets(scamImage, currentImage.getFileLocation());
+
+            // set info button to inactive
+            informationButton.setClickable(false);
+            informationButton.setImageResource(R.drawable.info_inactive);
+        } else{
+            // turn scam and safe buttons off
+            scamButton.setClickable(false);
+            safeButton.setClickable(false);
+            // set scam and safe buttons to click the one the user clicked.
+            if (currentImage.getAnswer() == "scam"){
+                scamButton.setImageResource(R.drawable.scam_clicked);
+            } else{
+                safeButton.setImageResource(R.drawable.safe_clicked);
+            }
+
+            // load overlay image
+            loadImageFromAssets(scamImage, currentImage.getOverlayFileLocation());
+
+            // set info button to inactive
+            informationButton.setClickable(true);
+            informationButton.setImageResource(R.drawable.info_active);
+        }
+
+
     }
 
+    // function that loads images from assets folder.
     public void loadImageFromAssets(ImageView scamImageView, String filePath) {
         AssetManager assetManager = getAssets();
         try {

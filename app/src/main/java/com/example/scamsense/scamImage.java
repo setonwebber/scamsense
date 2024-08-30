@@ -5,6 +5,8 @@ public class scamImage {
     private String fileLocation;
     private String overlayFileLocation;
     private String subtext;
+    private boolean completed;
+    private String answer;
 
     // Default constructor
     public scamImage() {
@@ -12,6 +14,8 @@ public class scamImage {
         this.fileLocation = "";
         this.overlayFileLocation = "";
         this.subtext = "";
+        this.completed = false;
+        this.answer = "";
     }
 
     // Parameterized constructor
@@ -20,6 +24,8 @@ public class scamImage {
         this.fileLocation = fileLocation;
         this.overlayFileLocation = overlayFileLocation;
         this.subtext = subtext;
+        this.completed = false;
+        this.answer = "";
     }
 
     // Getter for fileLocation
@@ -41,4 +47,16 @@ public class scamImage {
     public boolean getScamStatus() {
         return isScam;
     }
+
+    // Setter for completed
+    public void setCompleted(boolean comp){ completed = comp; }
+
+    // Setter for answer
+    public void setAnswer(String answer) { this.answer = answer;}
+
+    // Getter for completed
+    public boolean getCompleted(){return completed;}
+
+    // Getter for answer
+    public String getAnswer(){return answer;}
 }

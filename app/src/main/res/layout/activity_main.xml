@@ -18,62 +18,89 @@
 
         app:srcCompat="@color/black" />
 
-    <Button
-        android:id="@+id/btnScam"
 
-        android:layout_width="100dp"
-        android:layout_height="100dp"
 
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="650dp"
-        android:layout_alignParentStart="true"
-        android:textAllCaps="true"
-
-        android:text="Scam" />
-
-    <Button
+    <ImageButton
         android:id="@+id/btnSafe"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
 
-        android:layout_width="100dp"
+
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/btnInformation"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/safe" />
+
+    <ImageButton
+        android:id="@+id/btnScam"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+
+
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnInformation"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/scam" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
 
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        app:srcCompat="@drawable/background_divider" />
 
-        android:layout_marginTop="650dp"
-        android:layout_marginEnd="100dp"
-        android:layout_alignParentEnd="true"
-        android:textAllCaps="true"
-
-        android:text="Safe" />
-
-    <Button
-        android:id="@+id/btnNext"
-
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-
-
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="750dp"
-        android:layout_alignParentEnd="true"
-        android:textAllCaps="true"
-
-
-        android:text="Next" />
-
-    <Button
+    <ImageButton
         android:id="@+id/btnInformation"
-
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-
+        android:layout_width="80dp"
+        android:layout_height="80dp"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="750dp"
-        android:layout_alignParentStart="true"
-        android:textAllCaps="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
 
-        android:text="Info" />
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/info_inactive" />
+
+    <ImageButton
+        android:id="@+id/btnNext"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btnInformation"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/next_inactive" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btnInformation"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/back_inactive" />
 
 
 </RelativeLayout>

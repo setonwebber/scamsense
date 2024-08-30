@@ -19,7 +19,7 @@ public class scamImagesVec {
     public scamImagesVec() {
         this.scamImages = new ArrayList<>();
         this.currentImageIndex = 0;
-        this.imageCount = 1;
+        this.imageCount = 2;
     }
 
     // Method to load images into the vector
@@ -72,7 +72,11 @@ public class scamImagesVec {
 
     // Method to move to the next image
     public void nextImage() {
-        currentImageIndex = (currentImageIndex + 1) % scamImages.size();
+        currentImageIndex = currentImageIndex + 1;
+    }
+
+    public void backImage(){
+        currentImageIndex = currentImageIndex - 1;
     }
 
     // Getter for currentImageIndex
