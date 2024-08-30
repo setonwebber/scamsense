@@ -19,7 +19,7 @@ public class scamImagesVec {
     public scamImagesVec() {
         this.scamImages = new ArrayList<>();
         this.currentImageIndex = 0;
-        this.imageCount = 2;
+        this.imageCount = 8;
     }
 
     // Method to load images into the vector
