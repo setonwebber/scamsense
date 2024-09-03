@@ -23,7 +23,7 @@ public class scamImagesVec {
     }
 
     // Method to load images into the vector
-    public void loadVector(AssetManager assetManager) {
+    public void loadVector(AssetManager assetManager, int level) {
         Log.d("PRINTCONSOLE", "loadVector variables loaded.");
 
         // loop through every subfolder in /scamimages/ (currently hardcoded to iteration imageCount amount of times, we can try change to actually check how many folders there is and go from there).
@@ -78,6 +78,10 @@ public class scamImagesVec {
                 Log.e("PRINTCONSOLE", "Error loading assets from " + directoryPath, e);
             }
         }
+    }
+
+    public void deleteVector(){
+        scamImages.clear();
     }
 
     // Method to move to the next image

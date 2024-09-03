@@ -1,109 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:configChanges="orientation"
+    android:screenOrientation="portrait"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <ImageView
-        android:id="@+id/scamImage"
+        android:id="@+id/header_title"
 
-        android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_width="430dp"
+        android:layout_height="71dp"
+        android:scaleType="fitCenter"
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
 
-        app:srcCompat="@color/black" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/header_back" />
 
     <ImageButton
-        android:id="@+id/btnSafe"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:id="@+id/level1Button"
 
-
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="60dp"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/btnInformation"
-
-        android:background="@null"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/safe" />
-
-    <ImageButton
-        android:id="@+id/btnScam"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-
-
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnInformation"
-
-        android:background="@null"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/scam" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="100dp"
 
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        app:srcCompat="@drawable/background_divider" />
+        android:layout_marginTop="24dp"
+        android:background="@null"
+
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title"
+
+        app:srcCompat="@drawable/level1_button" />
+
+    <ImageView
+        android:id="@+id/level1Button_Stars"
+
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+
+        android:background="@null"
+
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/level1Button"
+
+        app:layout_constraintTop_toTopOf="@+id/level1Button"
+        app:srcCompat="@drawable/stars_backdrop" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/level1Button_star1"-->
+
+<!--        android:layout_width="20dp"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_marginStart="-3dp"-->
+
+<!--        android:background="@null"-->
+<!--        android:scaleType="fitCenter"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="@+id/level1Button_Stars"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/level1Button_Stars"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/level1Button_Stars"-->
+<!--        app:srcCompat="@drawable/star" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/level1Button_star2"-->
+
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginStart="-3dp"-->
+
+<!--            android:background="@null"-->
+<!--            android:scaleType="fitCenter"-->
+
+<!--            app:layout_constraintTop_toTopOf="@+id/level1Button_Stars"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/level1Button_Stars"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/level1Button_star1"-->
+
+<!--            app:srcCompat="@drawable/star"-->
+<!--            tools:layout_editor_absoluteY="110dp" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/level1Button_star3"-->
+
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginStart="-3dp"-->
+
+<!--            android:background="@null"-->
+<!--            android:scaleType="fitCenter"-->
+
+<!--            app:layout_constraintTop_toTopOf="@+id/level1Button_Stars"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/level1Button_Stars"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/level1Button_star2"-->
+
+<!--            app:srcCompat="@drawable/star"-->
+<!--            tools:layout_editor_absoluteY="110dp" />-->
+
 
     <ImageButton
-        android:id="@+id/btnInformation"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/level2Button"
 
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level1Button"
+        app:srcCompat="@drawable/level2" />
+
+    <ImageButton
+        android:id="@+id/level3Button"
+
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level2Button"
+        app:srcCompat="@drawable/level3" />
+
+    <ImageButton
+        android:id="@+id/comingSoonButton"
+
+        android:layout_width="300dp"
+        android:layout_height="100dp"
 
         android:background="@null"
         android:clickable="false"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/info_inactive" />
-
-    <ImageButton
-        android:id="@+id/btnNext"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:layout_toRightOf="@+id/btnInformation"
-
-        android:background="@null"
-        android:clickable="false"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/next_inactive" />
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="5dp"
-        android:layout_toLeftOf="@+id/btnInformation"
-
-        android:background="@null"
-        android:clickable="false"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/back_inactive" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level3Button"
+        app:srcCompat="@drawable/coming_soon" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
