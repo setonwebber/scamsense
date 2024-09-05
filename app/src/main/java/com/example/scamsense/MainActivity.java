@@ -25,13 +25,31 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        scamImages.getScamImages().clear();
+
         level1Button = findViewById(R.id.level1Button);
+        level2Button = findViewById(R.id.level2Button);
+        level3Button = findViewById(R.id.level3Button);
 
         // load all the stars according to the users wins, this will be called everytime the user goes back to the main screen
 
         level1Button.setOnClickListener(v ->{
             // loads scamimages vector
-            scamImages.loadVector(getAssets(), 1);
+            scamImages.loadVector(getAssets(), level1.getQuestions());
+            Intent intent=new Intent(MainActivity.this, activity_level.class);
+            startActivity(intent);
+        });
+
+        level2Button.setOnClickListener(v ->{
+            // loads scamimages vector
+            scamImages.loadVector(getAssets(), level2.getQuestions());
+            Intent intent=new Intent(MainActivity.this, activity_level.class);
+            startActivity(intent);
+        });
+
+        level3Button.setOnClickListener(v ->{
+            // loads scamimages vector
+            scamImages.loadVector(getAssets(), level3.getQuestions());
             Intent intent=new Intent(MainActivity.this, activity_level.class);
             startActivity(intent);
         });

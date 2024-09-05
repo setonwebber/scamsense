@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_title"
 
-        app:srcCompat="@drawable/level1_button" />
+        app:srcCompat="@drawable/level1" />
 
     <ImageView
         android:id="@+id/level1Button_Stars"

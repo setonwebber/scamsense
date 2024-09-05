@@ -1,5 +1,7 @@
 package com.example.scamsense;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -32,6 +34,7 @@ public class activity_level extends AppCompatActivity {
     private ImageButton scamButton;
     private ImageButton safeButton;
     private ImageButton informationButton;
+    private ImageButton menuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class activity_level extends AppCompatActivity {
         scamButton = findViewById(R.id.btnScam);
         safeButton = findViewById(R.id.btnSafe);
         informationButton = findViewById(R.id.btnInformation);
+        menuButton = findViewById(R.id.menuButton);
 
 
         // load the screen
@@ -50,42 +54,46 @@ public class activity_level extends AppCompatActivity {
         // when the scam button is clicked.
         scamButton.setOnClickListener(v -> {
             scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
-            if (currentImage.getScamStatus()){
-                // some type of comfirmation that the answer was correct
-                Log.d("PRINTCONSOLE", "scam button pressed, answer correct.");
-            } else{
-                // some type of comfirmation that the answer was incorrect
-                Log.d("PRINTCONSOLE", "scam button pressed, answer incorrect.");
-                popup_window(scamImages, v);
-            }
-            currentImage.setCompleted(true);
-            currentImage.setAnswer("scam");
+            scamButton.setImageResource(R.drawable.scam_clicked);
+            safeButton.setImageResource(R.drawable.safe);
 
-            loadScreen(scamImages);
+            if (currentImage.getScamStatus()){
+                currentImage.setAnswer(true);
+            } else{
+                currentImage.setAnswer(false);
+            }
+
+            currentImage.setCompleted(true);
+            popup_window(scamImages, v);
         });
 
         // when the safe button is clicked.
         safeButton.setOnClickListener(v -> {
             scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+            scamButton.setImageResource(R.drawable.scam);
+            safeButton.setImageResource(R.drawable.safe_clicked);
 
             if (!currentImage.getScamStatus()){
-                // some type of comfirmation that the answer was correct
                 Log.d("PRINTCONSOLE", "safe button pressed, answer correct.");
+                currentImage.setAnswer(true);
             } else{
                 // some type of comfirmation that the answer was incorrect
                 Log.d("PRINTCONSOLE", "safe button pressed, answer incorrect.");
-                popup_window(scamImages, v);
+                currentImage.setAnswer(false);
+
             }
+
             currentImage.setCompleted(true);
-            currentImage.setAnswer("safe");
-
-            Log.d("PRINTCONSOLE", String.valueOf(currentImage.getScamStatus()));
-
-            loadScreen(scamImages);
+            popup_window(scamImages, v);
         });
 
         informationButton.setOnClickListener(v -> {
-            popup_window(scamImages, v);
+            // a how to play instead. ?
+        });
+
+        menuButton.setOnClickListener(v-> {
+            Intent intent=new Intent(activity_level.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -110,15 +118,6 @@ public class activity_level extends AppCompatActivity {
             scamButton.setClickable(false);
             safeButton.setClickable(false);
 
-            // set scam and safe buttons to click the one the user clicked.
-            if (currentImage.getAnswer() == "scam"){
-                scamButton.setImageResource(R.drawable.scam_clicked);
-                safeButton.setImageResource(R.drawable.safe);
-            } else{
-                scamButton.setImageResource(R.drawable.scam);
-                safeButton.setImageResource(R.drawable.safe_clicked);
-            }
-
             // load overlay image
             loadImageFromAssets(scamImage, currentImage.getOverlayFileLocation());
 
@@ -127,6 +126,7 @@ public class activity_level extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void popup_window(scamImagesVec scamImages, View v){
         scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
 
@@ -148,6 +148,13 @@ public class activity_level extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
+                if (scamImages.nextImage()){
+                    // because of how functions work, if nextImage is true it wouldve already iterated to the next image, if it's false, it runs the else and doesnt iterate, funny right.
+                    loadScreen(scamImages);
+                } else {
+                    Intent intent=new Intent(activity_level.this, activity_levelComplete.class);
+                    startActivity(intent);
+                }
                 return true;
             }
         });
@@ -155,10 +162,7 @@ public class activity_level extends AppCompatActivity {
         // Set the text to the subtext.
         TextView popupText = popupView.findViewById(R.id.popup_text);
 
-        boolean answerScam;
-        if (currentImage.getAnswer().equals("scam")){ answerScam = true; } else { answerScam = false;}
-
-        if (currentImage.getScamStatus() == answerScam) {
+        if (currentImage.getAnswer()) {
             popupText.setBackgroundColor(Color.parseColor("#68dd65"));
             popupText.setText("You got this image right!\n\n" + currentImage.getSubtext()); // change this message so its less shitty.
         } else {
