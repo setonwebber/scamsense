@@ -27,10 +27,6 @@ import java.io.InputStream;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class activity_level extends AppCompatActivity {
-
-    scamImagesVec scamImages = MainActivity.scamImages;
-    levels levels = MainActivity.levels;
-
     private ImageView scamImage;
     private ImageButton scamButton;
     private ImageButton safeButton;
@@ -48,6 +44,9 @@ public class activity_level extends AppCompatActivity {
         informationButton = findViewById(R.id.btnInformation);
         menuButton = findViewById(R.id.menuButton);
 
+        dataManager dataManager = com.example.scamsense.dataManager.getInstance();
+        scamImagesVec scamImages = dataManager.getScamImages();
+        levels levels = dataManager.getLevels();
 
         // load the screen
         loadScreen(scamImages);
@@ -78,7 +77,7 @@ public class activity_level extends AppCompatActivity {
             if (!currentImage.getScamStatus()){
                 levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
                 currentImage.setAnswer(true);
-            } else{
+            } else {
                 currentImage.setAnswer(false);
             }
 

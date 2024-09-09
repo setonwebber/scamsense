@@ -11,133 +11,109 @@
     tools:context=".activity_levelComplete">
 
     <ImageView
-        android:id="@+id/empty_stars"
+        android:id="@+id/header_title"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="430dp"
+        android:layout_height="71dp"
         android:scaleType="fitCenter"
 
-        android:layout_marginTop="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/stars_backdrop" />
+        app:srcCompat="@drawable/header_back" />
 
     <ImageView
-        android:id="@+id/one_star"
+        android:id="@+id/congrats_stars"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+
         android:scaleType="fitCenter"
 
-        android:layout_marginTop="240dp"
-        android:layout_marginStart="5dp"
-
-        android:visibility="invisible"
-
-        app:srcCompat="@drawable/star" />
-
-    <ImageView
-        android:id="@+id/two_star"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-
-        android:layout_marginTop="240dp"
-        android:layout_marginStart="140dp"
-
-        android:visibility="invisible"
-
-        app:srcCompat="@drawable/star" />
-
-    <ImageView
-        android:id="@+id/three_star"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-
-        android:layout_marginTop="240dp"
-        android:layout_marginStart="275dp"
-
-        android:visibility="invisible"
-
-        app:srcCompat="@drawable/star" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/congrats_0_stars" />
 
     <ImageButton
-        android:id="@+id/back_to_home"
+        android:id="@+id/homeButton"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+
+        android:layout_marginTop="24dp"
+        android:background="@null"
+
         android:scaleType="fitCenter"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="64dp"
 
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="100dp"
+        app:srcCompat="@drawable/homebutton" />
 
-        app:srcCompat="@drawable/back_to_home" />
+<!--    Add this after the showing cos i wont have time to code it rn-->
+<!--    <ImageButton-->
+<!--        android:id="@+id/viewResults"-->
 
-    <TextView
-        android:id="@+id/try_again"
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="70dp"-->
 
-        android:text="Try Again"
-        android:textSize="50dp"
+<!--        android:layout_above="@+id/homeButton"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        android:layout_centerHorizontal="true"-->
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
+<!--        android:background="@null"-->
+<!--        android:scaleType="fitCenter"-->
 
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="100dp"
-
-        android:visibility="invisible"
-        />
-
-    <TextView
-        android:id="@+id/almost"
-
-        android:text="Almost..."
-        android:textSize="50dp"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="100dp"
-
-        android:visibility="invisible"
-        />
-
-    <TextView
-        android:id="@+id/well_done"
-
-        android:text="Well Done!"
-        android:textSize="50dp"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="90dp"
-
-        android:visibility="invisible"
-        />
+<!--        app:srcCompat="@drawable/viewresult_button" />-->
 
     <TextView
         android:id="@+id/score"
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/congrats_stars"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+
         android:text="score"
-        android:textSize="30dp"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/responseText"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_below="@+id/score"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
 
-        android:layout_marginTop="380dp"
-        android:layout_marginLeft="170dp"
+        android:text="Try again?"
+        android:textSize="30dp" />
 
-        />
+    <TextView
+        android:id="@+id/wip"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_above="@+id/homeButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="380dp"
+
+        android:scaleType="fitCenter"
+
+        android:text="wip: try again and view results  buttons/functions"
+        android:textSize="10sp" />
 
 
 </RelativeLayout>

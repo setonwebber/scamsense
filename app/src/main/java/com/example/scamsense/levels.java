@@ -19,7 +19,7 @@ public class levels {
         if (index >= 0 && index < levelList.size()) {
             return levelList.get(index);
         }
-        return null; // Return null if the index is invalid
+        return null;
     }
 
     public void setCurrentLevel(int index) {

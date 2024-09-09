@@ -9,25 +9,29 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Random;
 
 public class scamImagesVec {
     private List<scamImage> scamImages;
+    private List<scamImage> scamImagesAssets;
     private int currentImageIndex;
     private int imageCount;
 
     // Default constructor
     public scamImagesVec() {
         this.scamImages = new ArrayList<>();
+        this.scamImagesAssets = new ArrayList<>();  // Initialize the scamImagesAssets list
         this.currentImageIndex = 0;
-        this.imageCount = 8;
     }
 
     // Method to load images into the vector
-    public void loadVector(AssetManager assetManager, int questions) {
+    public void loadVector(AssetManager assetManager, int imageCount) {
         Log.d("PRINTCONSOLE", "loadVector variables loaded.");
-
+        this.imageCount = imageCount;
         // loop through every subfolder in /scamimages/ (currently hardcoded to iteration imageCount amount of times, we can try change to actually check how many folders there is and go from there).
-        for (int i = 1; i <= questions; i++) {
+        for (int i = 1; i <= imageCount; i++) {
             // make a string of the directory path for the subfolder we're currently on
             String directoryPath = "scamImages/" + i;
             Log.d("PRINTCONSOLE", "Attempting to load assets from: " + directoryPath);
@@ -71,7 +75,7 @@ public class scamImagesVec {
 
                 // create a ScamImage object and add it to the list
                 scamImage currentScam = new scamImage(isScam, fileLocation, overlayFileLocation, subtext);
-                scamImages.add(currentScam);
+                scamImagesAssets.add(currentScam);
                 Log.d("PRINTCONSOLE", "ScamImage loaded and added to list.");
 
             } catch (IOException e) {
@@ -80,8 +84,37 @@ public class scamImagesVec {
         }
     }
 
-    public void deleteVector(){
+    public void loadQuestions(int questions ) {
+        currentImageIndex = 0;
+        Log.d("mainactivityerror", "currentimageindex");
+        Set<Integer> indexPrevious = new HashSet<>();
+        for(int i = 1; i <= questions; i++){
+            int randomIndex;
+            Log.d("mainactivityerror", "randomindex");
+            // Generate a random index and check for duplicates
+            do {
+                randomIndex = new Random().nextInt(imageCount);
+                Log.d("mainactivityerror", "new random number");// Generate a random number between 0 and imageCount-1
+            } while (indexPrevious.contains(randomIndex)); // If the number is in indexPrevious, reroll
+
+            // Add the random image to the scamImages list
+            scamImages.add(scamImagesAssets.get(randomIndex));
+            Log.d("mainactivityerror", "add random number");
+
+            // Add the index to the set to track previous selections
+            indexPrevious.add(randomIndex);
+        }
+    }
+    public void clearQuestions() {
         scamImages.clear();
+        scamImagesAssets.clear();
+        currentImageIndex = 0;  // Optionally reset currentImageIndex if needed
+    }
+
+    public void clearAll() {
+        scamImages.clear();
+        scamImagesAssets.clear();
+        currentImageIndex = 0;  // Optionally reset currentImageIndex if needed
     }
 
     // Method to move to the next image

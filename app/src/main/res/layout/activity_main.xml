@@ -42,20 +42,20 @@
 
         app:srcCompat="@drawable/level1" />
 
-    <ImageView
-        android:id="@+id/level1Button_Stars"
+<!--    <ImageView-->
+<!--        android:id="@+id/level1Button_Stars"-->
 
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginEnd="32dp"-->
 
-        android:background="@null"
+<!--        android:background="@null"-->
 
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="@+id/level1Button"
+<!--        android:scaleType="fitCenter"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/level1Button"-->
 
-        app:layout_constraintTop_toTopOf="@+id/level1Button"
-        app:srcCompat="@drawable/stars_backdrop" />
+<!--        app:layout_constraintTop_toTopOf="@+id/level1Button"-->
+<!--        app:srcCompat="@drawable/stars_backdrop" />-->
 
 <!--    <ImageView-->
 <!--        android:id="@+id/level1Button_star1"-->
@@ -135,20 +135,20 @@
         app:layout_constraintTop_toBottomOf="@+id/level2Button"
         app:srcCompat="@drawable/level3" />
 
-    <ImageButton
-        android:id="@+id/comingSoonButton"
+<!--    <ImageButton-->
+<!--        android:id="@+id/comingSoonButton"-->
 
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="100dp"-->
 
-        android:background="@null"
-        android:clickable="false"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/level3Button"
-        app:srcCompat="@drawable/coming_soon" />
+<!--        android:background="@null"-->
+<!--        android:clickable="false"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/level3Button"-->
+<!--        app:srcCompat="@drawable/coming_soon" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
