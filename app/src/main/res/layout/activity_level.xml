@@ -7,6 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
     tools:context=".activity_level"
     tools:ignore="LockedOrientationActivity, DiscouragedApi">
 
@@ -16,6 +17,7 @@
         android:layout_width="430dp"
         android:layout_height="71dp"
         android:scaleType="fitCenter"
+        android:background="@null"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

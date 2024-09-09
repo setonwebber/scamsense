@@ -129,7 +129,7 @@ public class activity_level extends AppCompatActivity {
 
             // set info button to inactive
             informationButton.setClickable(false);
-        } else{
+        } else {
             // turn scam and safe buttons off
             scamButton.setClickable(false);
             safeButton.setClickable(false);
