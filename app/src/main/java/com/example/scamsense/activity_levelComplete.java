@@ -14,14 +14,21 @@ import android.widget.ImageButton;
 public class activity_levelComplete extends AppCompatActivity {
 
     private ImageButton menuButton;
+    private ImageButton homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_complete);
         menuButton = findViewById(R.id.menuButton);
+        homeButton = findViewById(R.id.back_to_home);
 
         menuButton.setOnClickListener(v-> {
+            Intent intent=new Intent(activity_levelComplete.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        homeButton.setOnClickListener(v-> {
             Intent intent=new Intent(activity_levelComplete.this, MainActivity.class);
             startActivity(intent);
         });
