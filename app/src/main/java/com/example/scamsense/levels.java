@@ -1,24 +1,41 @@
 package com.example.scamsense;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class levels {
-    private int questions;
-    private int rightAnswers;
-    private int wrongAnswers;
+    private List<level> levelList;
+    private level currentLevel;
 
-
-    public levels(){
-        this.questions = 0;
-        this.rightAnswers = 0;
-        this.wrongAnswers = 0;
+    public levels() {
+        levelList = new ArrayList<>();
     }
 
-    public levels(int questions){
-        this.questions = questions;
-        this.rightAnswers = 0;
-        this.wrongAnswers = 0;
+    public void addLevel(level level) {
+        levelList.add(level);
     }
 
-    public int getQuestions(){
-        return questions;
+    public level getLevel(int index) {
+        if (index >= 0 && index < levelList.size()) {
+            return levelList.get(index);
+        }
+        return null; // Return null if the index is invalid
+    }
+
+    public void setCurrentLevel(int index) {
+        if (index >= 0 && index < levelList.size()) {
+            currentLevel = levelList.get(index);
+            System.out.println("Current level set to Level " + (index + 1));
+        } else {
+            System.out.println("Invalid level index");
+        }
+    }
+
+    public level getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public List<level> getlevelList() {
+        return levelList;
     }
 }

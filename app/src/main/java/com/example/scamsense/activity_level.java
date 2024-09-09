@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class activity_level extends AppCompatActivity {
 
     scamImagesVec scamImages = MainActivity.scamImages;
+    levels levels = MainActivity.levels;
 
     private ImageView scamImage;
     private ImageButton scamButton;
@@ -58,6 +59,7 @@ public class activity_level extends AppCompatActivity {
             safeButton.setImageResource(R.drawable.safe);
 
             if (currentImage.getScamStatus()){
+                levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
                 currentImage.setAnswer(true);
             } else{
                 currentImage.setAnswer(false);
@@ -74,13 +76,10 @@ public class activity_level extends AppCompatActivity {
             safeButton.setImageResource(R.drawable.safe_clicked);
 
             if (!currentImage.getScamStatus()){
-                Log.d("PRINTCONSOLE", "safe button pressed, answer correct.");
+                levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
                 currentImage.setAnswer(true);
             } else{
-                // some type of comfirmation that the answer was incorrect
-                Log.d("PRINTCONSOLE", "safe button pressed, answer incorrect.");
                 currentImage.setAnswer(false);
-
             }
 
             currentImage.setCompleted(true);
@@ -153,6 +152,7 @@ public class activity_level extends AppCompatActivity {
                     loadScreen(scamImages);
                 } else {
                     Intent intent=new Intent(activity_level.this, activity_levelComplete.class);
+
                     startActivity(intent);
                 }
                 return true;

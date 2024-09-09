@@ -10,14 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     public static scamImagesVec scamImages = new scamImagesVec();
+    public static levels levels = new levels();
 
     private ImageButton level1Button;
     private ImageButton level2Button;
     private ImageButton level3Button;
 
-    levels level1 = new levels(5);
-    levels level2 = new levels(10);
-    levels level3 = new levels(20);
+    int levelCount = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,25 +30,36 @@ public class MainActivity extends AppCompatActivity {
         level2Button = findViewById(R.id.level2Button);
         level3Button = findViewById(R.id.level3Button);
 
+        int[] questionCount = {5, 10, 20, 30, 40, 50};
+
+        // Loop to create levelCount number of Level objects
+        for (int i = 0; i < levelCount; i++) {
+            level level = new level(questionCount[i]);
+            levels.addLevel(level);
+        }
+
         // load all the stars according to the users wins, this will be called everytime the user goes back to the main screen
 
         level1Button.setOnClickListener(v ->{
             // loads scamimages vector
-            scamImages.loadVector(getAssets(), level1.getQuestions());
+            levels.setCurrentLevel(0);
+            scamImages.loadVector(getAssets(), levels.getCurrentLevel().getQuestions());
             Intent intent=new Intent(MainActivity.this, activity_level.class);
             startActivity(intent);
         });
 
         level2Button.setOnClickListener(v ->{
             // loads scamimages vector
-            scamImages.loadVector(getAssets(), level2.getQuestions());
+            levels.setCurrentLevel(1);
+            scamImages.loadVector(getAssets(), levels.getCurrentLevel().getQuestions());
             Intent intent=new Intent(MainActivity.this, activity_level.class);
             startActivity(intent);
         });
 
         level3Button.setOnClickListener(v ->{
             // loads scamimages vector
-            scamImages.loadVector(getAssets(), level3.getQuestions());
+            levels.setCurrentLevel(2);
+            scamImages.loadVector(getAssets(), levels.getCurrentLevel().getQuestions());
             Intent intent=new Intent(MainActivity.this, activity_level.class);
             startActivity(intent);
         });
