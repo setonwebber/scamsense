@@ -1,9 +1,4 @@
 isScam = true
-This is a reimbursement scam! These types of scams will attempt to steal personal and bank account information.
-The scammer will masquerade as a financial or government entity. Typically seen is the ATO, personal bank or utility provider.
-A suspicious link will be provided for the victim to begin reimbursement/rebate proceeding; for which the form will ask for personal or bank account information.
-Be careful as the message are intelligently crafted! Avoid any links sent via email or text message!
-
 Scam Indictors:
 1.	Suspicious Link
 2.	Unsaved Number

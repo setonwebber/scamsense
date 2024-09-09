@@ -1,9 +1,4 @@
 isScam = true
-This is a reclaim scam. These types of scams typically attempt to gain a money payment from the victim.
-The scammer will masquerade as a prominent agency such as the FBI, CIA or Interpol to trick the victim into a sense of legitimacy or fear of consequence.
-Generally, the scammer will make some claim that money is owed for a service, or to avoid a penalty.
-Remain calm and remember these agencies will not contact you for payments!
-
 Scam Indicators:
 1.	Suspect Subject
 2.	Cryptocurrency Payment

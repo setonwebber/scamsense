@@ -1,15 +1,12 @@
 package com.example.scamsense;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "ScamSensePrefs";
@@ -27,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
-
-
 
         level1Button = findViewById(R.id.level1Button);
         level2Button = findViewById(R.id.level2Button);
@@ -47,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             dataManager.getScamImages().clearAll();
             dataManager.getScamImages().loadVector(getAssets(), 25);
             dataManager.getLevels().resetRightAnswers();
-            // loads scamimages vector
             dataManager.getLevels().setCurrentLevel(0);
             dataManager.getScamImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions());
 

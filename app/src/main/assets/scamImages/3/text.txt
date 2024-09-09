@@ -1,8 +1,4 @@
 isScam = false
-This is a safe text message! 
-In most scam text messages, there will be a call to action – however, no such call is present here.
-It can also be noted, that the sender is a known contact – sister, and the subject matter is appropriate in context – family dinner.
-
 Safe Indicators:
 1.	Known Contact
 2.	Benign Message/No Links

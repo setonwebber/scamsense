@@ -2,6 +2,7 @@ package com.example.scamsense;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +20,11 @@ public class activity_levelComplete extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_level_complete);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
         levels levels = dataManager.getLevels();
-
-        setContentView(R.layout.activity_level_complete);
 
         homeButton = findViewById(R.id.homeButton);
         score = findViewById(R.id.score);

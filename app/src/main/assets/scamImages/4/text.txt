@@ -1,9 +1,4 @@
 isScam = true
-This is an inheritance scam! These types of scams attempt to trick you into divulging money, credit card details or personal ID.
-The scammer will have you believe you are the benefactor of a distant relative or recently deceased – typically they will pose as a lawyer, bank or senior official.
-The scammer will also claim the scores of money are difficult to obtain, which is why either a fee is needed, bank details, or verification through personal ID.
-Be vigilant, and if sounds too good to be true, its likely because it is!
-
 Scam Indicators
 1.	Unusual Email
 2.	Manufactured Urgency

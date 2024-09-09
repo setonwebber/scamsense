@@ -1,9 +1,4 @@
 isScam = true
-This is a rental scam! These types of scams will attempt to steal personal information and trick the victim into an upfront payment.
-The scammer, using a fake account will create a rental listing claiming it’s recently built or refurbished and well below market price without providing the address or photographic evidence.
-The scammer will typically ask for a booking fee due to demand as well as identity documents to secure the listing. 
-Examine closely, deal in-person where possibly and verify extensively.
-
 Scam Indicators:
 1.	Unrealistic Pricing
 2.	Upfront deposit.

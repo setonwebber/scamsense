@@ -2,10 +2,10 @@ package com.example.scamsense;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +19,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import android.app.Activity;
+import android.util.DisplayMetrics;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,6 +42,9 @@ public class activity_level extends AppCompatActivity {
         // initialize all values
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         scamImage = findViewById(R.id.scamImage);
         scamButton = findViewById(R.id.btnScam);
         safeButton = findViewById(R.id.btnSafe);
@@ -53,6 +60,9 @@ public class activity_level extends AppCompatActivity {
 
         // when the scam button is clicked.
         scamButton.setOnClickListener(v -> {
+            scamButton.setClickable(false);
+            safeButton.setClickable(false);
+
             scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
             scamButton.setImageResource(R.drawable.scam_clicked);
             safeButton.setImageResource(R.drawable.safe);
@@ -65,11 +75,15 @@ public class activity_level extends AppCompatActivity {
             }
 
             currentImage.setCompleted(true);
+            loadScreen(scamImages);
             popup_window(scamImages, v);
         });
 
         // when the safe button is clicked.
         safeButton.setOnClickListener(v -> {
+            scamButton.setClickable(false);
+            safeButton.setClickable(false);
+
             scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
             scamButton.setImageResource(R.drawable.scam);
             safeButton.setImageResource(R.drawable.safe_clicked);
@@ -82,11 +96,12 @@ public class activity_level extends AppCompatActivity {
             }
 
             currentImage.setCompleted(true);
+            loadScreen(scamImages);
             popup_window(scamImages, v);
         });
 
         informationButton.setOnClickListener(v -> {
-            // a how to play instead. ?
+            howto_window(v);
         });
 
         menuButton.setOnClickListener(v-> {
@@ -106,6 +121,9 @@ public class activity_level extends AppCompatActivity {
             safeButton.setClickable(true);
             safeButton.setImageResource(R.drawable.safe);
 
+            scamButton.setVisibility(View.VISIBLE);
+            safeButton.setVisibility(View.VISIBLE);
+
             // load image
             loadImageFromAssets(scamImage, currentImage.getFileLocation());
 
@@ -116,6 +134,9 @@ public class activity_level extends AppCompatActivity {
             scamButton.setClickable(false);
             safeButton.setClickable(false);
 
+            scamButton.setVisibility(View.INVISIBLE);
+            safeButton.setVisibility(View.INVISIBLE);
+
             // load overlay image
             loadImageFromAssets(scamImage, currentImage.getOverlayFileLocation());
 
@@ -124,7 +145,8 @@ public class activity_level extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    // inflator function for the popupwindow that shows the result of the answer
+    @SuppressLint("ClickableViewAccessibility")
     public void popup_window(scamImagesVec scamImages, View v){
         scamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
 
@@ -135,39 +157,70 @@ public class activity_level extends AppCompatActivity {
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height);
+
+        // get display details
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) v.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         // show the popup window
-        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(v, Gravity.CENTER, 0, displayMetrics.heightPixels / 4);
 
-        // dismiss the popup window when touched outside
-        popupView.setOnTouchListener(new View.OnTouchListener() {
+        // init popup variables
+        TextView popupText = popupView.findViewById(R.id.popup_text);
+        ImageButton nextButton = popupView.findViewById(R.id.nextbutton);
+        RelativeLayout frameLayout = popupView.findViewById(R.id.framelayout);
+
+        // dismiss the popup window when touched
+        nextButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow.dismiss();
+                scamButton.setClickable(true);
+                safeButton.setClickable(true);
+
                 if (scamImages.nextImage()){
                     // because of how functions work, if nextImage is true it wouldve already iterated to the next image, if it's false, it runs the else and doesnt iterate, funny right.
                     loadScreen(scamImages);
                 } else {
                     Intent intent=new Intent(activity_level.this, activity_levelComplete.class);
-
                     startActivity(intent);
                 }
+
                 return true;
             }
         });
-
-        // Set the text to the subtext.
-        TextView popupText = popupView.findViewById(R.id.popup_text);
-
         if (currentImage.getAnswer()) {
-            popupText.setBackgroundColor(Color.parseColor("#68dd65"));
+            frameLayout.setBackgroundColor(Color.parseColor("#68dd65"));
             popupText.setText("You got this image right!\n\n" + currentImage.getSubtext()); // change this message so its less shitty.
         } else {
-            popupText.setBackgroundColor(Color.parseColor("#dd6565"));
+            frameLayout.setBackgroundColor(Color.parseColor("#dd6565"));
             popupText.setText("You got this question wrong!\n\n" + currentImage.getSubtext()); // change this message so its less shitty.
         }
+    }
+
+    // simple inflator function to show the howto_window, this isnt dynamic so there isnt much code here.
+    public void howto_window(View v){
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_howto, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height);
+
+        // show the popup window
+        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 
     // function that loads images from assets folder.
@@ -188,4 +241,6 @@ public class activity_level extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 }

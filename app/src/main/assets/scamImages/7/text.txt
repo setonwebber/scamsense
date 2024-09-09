@@ -1,9 +1,4 @@
 isScam = true
-This is a prize winnings scam! These types of scams can be quite broad in their target, from malware injection to personal information theft – so be careful.
-The scammer will have you believe that you are the winner of an in-house prize competition or the ‘Lotto’.
-They will generally point the victim to a link, or request an upfront payment to move the prize winnings.
-Stop and think – is this something you entered in the first place?
-
 Scam Indicators:
 1.	Mismatched Name
 2.	Unusual wording
