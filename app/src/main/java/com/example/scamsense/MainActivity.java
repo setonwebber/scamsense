@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         level1Button.setOnClickListener(v ->{
             dataManager.getScamImages().clearAll();
             dataManager.getScamImages().loadVector(getAssets(), 25);
+            dataManager.getLevels().resetRightAnswers();
             // loads scamimages vector
             dataManager.getLevels().setCurrentLevel(0);
             dataManager.getScamImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions());
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         level2Button.setOnClickListener(v ->{
             dataManager.getScamImages().clearAll();
             dataManager.getScamImages().loadVector(getAssets(), 25);
+            dataManager.getLevels().resetRightAnswers();
             dataManager.getLevels().setCurrentLevel(1);
             dataManager.getScamImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions());
             Intent intent=new Intent(MainActivity.this, activity_level.class);
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         level3Button.setOnClickListener(v ->{
             dataManager.getScamImages().clearAll();
             dataManager.getScamImages().loadVector(getAssets(), 25);
+            dataManager.getLevels().resetRightAnswers();
             dataManager.getLevels().setCurrentLevel(2);
             dataManager.getScamImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions());
             Intent intent=new Intent(MainActivity.this, activity_level.class);

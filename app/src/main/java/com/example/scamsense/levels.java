@@ -31,6 +31,14 @@ public class levels {
         }
     }
 
+    public void resetRightAnswers() {
+        for (level level : levelList) {
+            if (level != null) {
+                level.setRightAnswers(0);
+            }
+        }
+    }
+
     public level getCurrentLevel() {
         return currentLevel;
     }
