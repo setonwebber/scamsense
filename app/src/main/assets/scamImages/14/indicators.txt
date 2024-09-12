@@ -1,0 +1,7 @@
+Grey Areas:
+1.	Unsaved Number
+2.	Links
+
+Safe Indicators:
+1.	 Consistent Messaging 
+2.	No call to action

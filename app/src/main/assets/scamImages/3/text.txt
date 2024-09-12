@@ -1,4 +1,4 @@
-isScam = false
-Safe Indicators:
-1.	Known Contact
-2.	Benign Message/No Links
+isScam = true
+title = Bank fraud scam
+
+

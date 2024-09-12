@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
-    tools:context=".activity_level"
+    tools:context=".LevelActivity"
     tools:ignore="LockedOrientationActivity, DiscouragedApi">
 
     <ImageView
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/header_back" />
+        app:srcCompat="@drawable/app_header_text" />
 
     <ImageButton
         android:id="@+id/menuButton"
@@ -48,7 +48,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@id/menuButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/info_button" />
+        app:srcCompat="@drawable/level_button_info" />
 
     <ImageView
         android:id="@+id/scamImage"
@@ -77,7 +77,7 @@
             android:background="@null"
             android:scaleType="fitCenter"
             app:layout_constraintHorizontal_bias="0.5"
-            app:srcCompat="@drawable/safe" />
+            app:srcCompat="@drawable/level_button_safe" />
 
         <ImageButton
             android:id="@+id/btnScam"
@@ -85,6 +85,6 @@
             android:layout_height="125dp"
             android:background="@null"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/scam" />
+            app:srcCompat="@drawable/level_button_scam" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

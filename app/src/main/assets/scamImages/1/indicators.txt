@@ -1,0 +1,3 @@
+Scam indicators
+1.	Unsaved number
+2.	Suspicious link

@@ -1,0 +1,2 @@
+isScam = true
+title = Nigerian Prince Scam

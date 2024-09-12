@@ -1,0 +1,5 @@
+Scam Indicators
+1.	Typos in text
+2.	Suspicious link
+3.	Call to action
+4.	Urgent language

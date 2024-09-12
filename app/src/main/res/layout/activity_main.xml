@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/header_back" />
+        app:srcCompat="@drawable/app_header_text" />
 
     <ImageButton
         android:id="@+id/level1Button"
@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_title"
 
-        app:srcCompat="@drawable/level1" />
+        app:srcCompat="@drawable/menu_button_level1" />
 
 <!--    <ImageView-->
 <!--        android:id="@+id/level1Button_Stars"-->
@@ -122,7 +122,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level1Button"
-        app:srcCompat="@drawable/level2" />
+        app:srcCompat="@drawable/menu_button_level2" />
 
     <ImageButton
         android:id="@+id/level3Button"
@@ -136,7 +136,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level2Button"
-        app:srcCompat="@drawable/level3" />
+        app:srcCompat="@drawable/menu_button_level3" />
 
 <!--    <ImageButton-->
 <!--        android:id="@+id/comingSoonButton"-->

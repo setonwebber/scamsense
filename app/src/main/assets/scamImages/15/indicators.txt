@@ -1,0 +1,4 @@
+Scam Indicators:
+1.	Mismatched Name
+2.	Unusual wording
+3.	Suspicious Link

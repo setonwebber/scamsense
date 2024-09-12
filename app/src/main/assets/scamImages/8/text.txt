@@ -1,6 +1,2 @@
-isScam = true
-Scam Indicators:
-1.	Unrealistic Pricing
-2.	Upfront deposit.
-3.	ID request
-4.	Absent Photo or Address
+isScam = false
+title = Happy Birthday Text

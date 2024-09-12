@@ -1,5 +1,2 @@
-isScam = true
-Scam Indicators:
-1.	Mismatched Name
-2.	Unusual wording
-3.	Suspicious Link
+isScam = false
+title = Family Dinner Text

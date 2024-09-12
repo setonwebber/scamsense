@@ -1,0 +1,5 @@
+Scam indicators
+1.	Too-good-to-be-true offer
+2.	Suspicious link
+3.	Urgent language
+4.	sense of urgency

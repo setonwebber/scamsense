@@ -1,0 +1,2 @@
+isScam = false
+title = UberEATS order

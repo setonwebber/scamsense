@@ -1,6 +1,2 @@
 isScam = true
-Scam Indicators:
-1.	Suspect Subject
-2.	Cryptocurrency Payment
-3.	Suspicious Links
-4.	Grammatical Errors
+title = Employment scam

@@ -2,12 +2,12 @@ package com.example.scamsense;
 
 public class dataManager {
     private static dataManager instance;
-    private scamImagesVec scamImagesVec;
-    private levels levels;
+    private ScamImages ScamImages;
+    private Levels levels;
 
     private dataManager() {
-        scamImagesVec = new scamImagesVec();
-        levels = new levels();
+        ScamImages = new ScamImages();
+        levels = new Levels();
     }
 
     public static synchronized dataManager getInstance() {
@@ -17,11 +17,11 @@ public class dataManager {
         return instance;
     }
 
-    public scamImagesVec getScamImages() {
-        return scamImagesVec;
+    public ScamImages getScamImages() {
+        return ScamImages;
     }
 
-    public levels getLevels() {
+    public Levels getLevels() {
         return levels;
     }
 }

@@ -1,0 +1,4 @@
+Scam Indicator:
+1.	Unsaved Number
+2.	Upfront Payment
+3.	Threats/Urgency

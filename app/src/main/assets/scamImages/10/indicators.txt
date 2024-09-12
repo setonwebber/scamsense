@@ -1,0 +1,5 @@
+Scam Indicators
+1.	Unusual Email
+2.	Manufactured Urgency
+3.	Unrealistic dollar amount
+4.	Personal Information Request

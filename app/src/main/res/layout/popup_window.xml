@@ -24,7 +24,7 @@
             android:scaleType="fitCenter"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            app:srcCompat="@drawable/nextbutton"/>
+            app:srcCompat="@drawable/level_button_next"/>
 
         <TextView
             android:id="@+id/popup_text"

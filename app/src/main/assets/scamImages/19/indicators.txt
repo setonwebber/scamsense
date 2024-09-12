@@ -1,0 +1,3 @@
+Safe Indicators:
+1.	Known Contact
+2.	Benign Message/No Links

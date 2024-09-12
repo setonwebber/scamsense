@@ -1,4 +1,2 @@
 isScam = true
-Scam Indictors:
-1.	Suspicious Link
-2.	Unsaved Number
+title = AusPost Delivery Scam
