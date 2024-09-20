@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ public class LevelCompleteActivity extends AppCompatActivity {
     private TextView score;
     private TextView responseText;
     private ImageButton homeButton;
+    private ImageButton resultsButton;
     private ImageView congratsStars;
 
     @SuppressLint({"SetTextI18n", "SourceLockedOrientationActivity"})
@@ -24,6 +27,10 @@ public class LevelCompleteActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_level_complete);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        ((View) decorView).setSystemUiVisibility(uiOptions);
 
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
         Levels levels = dataManager.getLevels();
@@ -32,6 +39,7 @@ public class LevelCompleteActivity extends AppCompatActivity {
         score = findViewById(R.id.score);
         responseText = findViewById(R.id.responseText);
         congratsStars = findViewById(R.id.congrats_stars);
+        resultsButton = findViewById(R.id.viewResults);
 
         // get the percentage of correct answers (use float as its in the decimals)
         float scorePercent = (float) (levels.getCurrentLevel().getRightAnswers() * 100) / levels.getCurrentLevel().getQuestions();
@@ -56,6 +64,12 @@ public class LevelCompleteActivity extends AppCompatActivity {
             responseText.setText("Try again?");
             congratsStars.setImageResource(R.drawable.congrats_0_stars);
         }
+
+        resultsButton.setOnClickListener(v -> {
+            Intent intent=new Intent(LevelCompleteActivity.this, ViewResults.class);
+            startActivity(intent);
+        });
+
 
         homeButton.setOnClickListener(v-> {
             Intent intent=new Intent(LevelCompleteActivity.this, MainActivity.class);
