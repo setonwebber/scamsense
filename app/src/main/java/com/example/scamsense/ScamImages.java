@@ -47,7 +47,7 @@ public class ScamImages {
                 String indicators = "";
                 String title = "";
 
-                // set inputstream and reader varriables.
+                // set inputstream and reader variables.
                 InputStream inputStream;
                 BufferedReader reader;
 
