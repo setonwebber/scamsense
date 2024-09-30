@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         ((View) decorView).setSystemUiVisibility(uiOptions);
 
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
-        dataManager.getScamImages().loadImages(getAssets(), 19);
-
 
         level1Button = findViewById(R.id.level1Button);
         level2Button = findViewById(R.id.level2Button);
@@ -60,15 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadLevel(dataManager dataManager, int level){
-        Log.d("PRINTCONSOLE", "loadlevel");
+        dataManager.getScamImages().clearAll(); dataManager.getScamImages().loadImages(getAssets(), 19);
         dataManager.getQuestionImages().clearAll();
-        Log.d("PRINTCONSOLE", "clearall");
-        dataManager.getLevels().resetRightAnswers();
-        Log.d("PRINTCONSOLE", "resetrightasnwers");
-        dataManager.getLevels().setCurrentLevel(level - 1);
-        Log.d("PRINTCONSOLE", "setcurrentlevel");
+        dataManager.getLevels().resetRightAnswers(); dataManager.getLevels().setCurrentLevel(level - 1);
         dataManager.getQuestionImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions(), dataManager.getScamImages());
-        Log.d("PRINTCONSOLE", "loadquestions");
 
         Intent intent=new Intent(MainActivity.this, LevelActivity.class);
         startActivity(intent);

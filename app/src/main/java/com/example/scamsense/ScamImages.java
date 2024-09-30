@@ -9,9 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Random;
 
 public class ScamImages {
     private List<ScamImage> ScamImages;
@@ -31,7 +28,7 @@ public class ScamImages {
 
             // make a string of the directory path for the subfolder we're currently on
             String directoryPath = "scamImages/" + i;
-            Log.d("PRINTCONSOLE", "Attempting to load assets from: " + directoryPath);
+            // Log.d("PRINTCONSOLE", "Attempting to load assets from: " + directoryPath);
 
             // try catch just in case lol :3
             try {
@@ -102,7 +99,7 @@ public class ScamImages {
                 ScamImage currentScam = new ScamImage(isScam, fileLocation, overlayFileLocation, subtext, indicators, title);
                 ScamImages.add(currentScam);
 
-                Log.d("PRINTCONSOLE", "ScamImage loaded and added to list.");
+                // Log.d("PRINTCONSOLE", "ScamImage loaded and added to list.");
 
             } catch (IOException e) {
                 Log.e("PRINTCONSOLE", "Error loading assets from " + directoryPath, e);
@@ -113,5 +110,9 @@ public class ScamImages {
     // Getter for scamImages list
     public List<ScamImage> getScamImages() {
         return ScamImages;
+    }
+
+    public void clearAll() {
+        ScamImages.clear();
     }
 }

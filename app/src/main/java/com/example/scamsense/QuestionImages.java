@@ -44,10 +44,6 @@ public class QuestionImages {
     }
 
     public void clearAll() {
-        for(int i = 0; i <= QuestionImages.size(); i++){
-            QuestionImages.get(i).setAnswer(false);
-            QuestionImages.get(i).setCompleted(false);
-        }
         QuestionImages.clear();
         currentImageIndex = 0;  // Optionally reset currentImageIndex if needed
     }

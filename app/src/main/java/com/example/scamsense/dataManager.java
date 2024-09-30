@@ -1,5 +1,7 @@
 package com.example.scamsense;
 
+import android.util.Log;
+
 public class dataManager {
     private static dataManager instance;
     private ScamImages ScamImages;
