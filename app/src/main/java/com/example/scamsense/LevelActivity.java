@@ -51,7 +51,7 @@ public class LevelActivity extends AppCompatActivity {
         ((View) decorView).setSystemUiVisibility(uiOptions);
 
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
-        ScamImages scamImages = dataManager.getScamImages();
+        QuestionImages questionImages = dataManager.getQuestionImages();
         Levels levels = dataManager.getLevels();
 
         scamImage = findViewById(R.id.scamImage);
@@ -61,11 +61,11 @@ public class LevelActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menuButton);
 
         // load the screen
-        loadScreen(scamImages);
+        loadScreen(questionImages);
 
         // when the scam button is clicked.
         scamButton.setOnClickListener(v -> {
-            ScamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+            ScamImage currentImage = questionImages.getQuestionImages().get(questionImages.getCurrentImageIndex());
 
             if (currentImage.getScamStatus()){
                 levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
@@ -75,13 +75,13 @@ public class LevelActivity extends AppCompatActivity {
             }
 
             currentImage.setCompleted(true);
-            loadScreen(scamImages);
-            popup_window(scamImages, v);
+            loadScreen(questionImages);
+            popup_window(questionImages, v);
         });
 
         // when the safe button is clicked.
         safeButton.setOnClickListener(v -> {
-            ScamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+            ScamImage currentImage = questionImages.getQuestionImages().get(questionImages.getCurrentImageIndex());
 
             if (!currentImage.getScamStatus()){
                 levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
@@ -91,8 +91,8 @@ public class LevelActivity extends AppCompatActivity {
             }
 
             currentImage.setCompleted(true);
-            loadScreen(scamImages);
-            popup_window(scamImages, v);
+            loadScreen(questionImages);
+            popup_window(questionImages, v);
         });
 
         informationButton.setOnClickListener(v -> {
@@ -105,8 +105,8 @@ public class LevelActivity extends AppCompatActivity {
         });
     }
 
-    public void loadScreen(ScamImages scamImages){
-        ScamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+    public void loadScreen(QuestionImages questionImages){
+        ScamImage currentImage = questionImages.getQuestionImages().get(questionImages.getCurrentImageIndex());
 
         // If the current image hasnt been completed before.
         if (!currentImage.getCompleted()){
@@ -142,8 +142,8 @@ public class LevelActivity extends AppCompatActivity {
 
     // inflator function for the popupwindow that shows the result of the answer
     @SuppressLint("ClickableViewAccessibility")
-    public void popup_window(ScamImages scamImages, View v){
-        ScamImage currentImage = scamImages.getScamImages().get(scamImages.getCurrentImageIndex());
+    public void popup_window(QuestionImages questionImages, View v){
+        ScamImage currentImage = questionImages.getQuestionImages().get(questionImages.getCurrentImageIndex());
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -174,9 +174,9 @@ public class LevelActivity extends AppCompatActivity {
                 scamButton.setClickable(true);
                 safeButton.setClickable(true);
 
-                if (scamImages.nextImage()){
+                if (questionImages.nextImage()){
                     // because of how functions work, if nextImage is true it wouldve already iterated to the next image, if it's false, it runs the else and doesnt iterate, funny right.
-                    loadScreen(scamImages);
+                    loadScreen(questionImages);
                 } else {
                     Intent intent=new Intent(LevelActivity.this, LevelCompleteActivity.class);
                     startActivity(intent);

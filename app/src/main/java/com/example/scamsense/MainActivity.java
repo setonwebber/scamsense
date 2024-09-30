@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         ((View) decorView).setSystemUiVisibility(uiOptions);
 
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
+        dataManager.getScamImages().loadImages(getAssets(), 19);
+
 
         level1Button = findViewById(R.id.level1Button);
         level2Button = findViewById(R.id.level2Button);
@@ -57,11 +60,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadLevel(dataManager dataManager, int level){
-        dataManager.getScamImages().clearAll();
-        dataManager.getScamImages().loadImages(getAssets(), 19);
+        Log.d("PRINTCONSOLE", "loadlevel");
+        dataManager.getQuestionImages().clearAll();
+        Log.d("PRINTCONSOLE", "clearall");
         dataManager.getLevels().resetRightAnswers();
+        Log.d("PRINTCONSOLE", "resetrightasnwers");
         dataManager.getLevels().setCurrentLevel(level - 1);
-        dataManager.getScamImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions());
+        Log.d("PRINTCONSOLE", "setcurrentlevel");
+        dataManager.getQuestionImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions(), dataManager.getScamImages());
+        Log.d("PRINTCONSOLE", "loadquestions");
 
         Intent intent=new Intent(MainActivity.this, LevelActivity.class);
         startActivity(intent);

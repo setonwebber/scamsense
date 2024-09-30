@@ -15,15 +15,11 @@ import java.util.Random;
 
 public class ScamImages {
     private List<ScamImage> ScamImages;
-    private List<ScamImage> scamImagesAssets;
-    private int currentImageIndex;
     private int imageCount;
 
     // Default constructor
     public ScamImages() {
         this.ScamImages = new ArrayList<>();
-        this.scamImagesAssets = new ArrayList<>();  // Initialize the scamImagesAssets list
-        this.currentImageIndex = 0;
     }
 
     // Method to load images into the vector
@@ -104,7 +100,7 @@ public class ScamImages {
 
                 // create a ScamImage object and add it to the list
                 ScamImage currentScam = new ScamImage(isScam, fileLocation, overlayFileLocation, subtext, indicators, title);
-                scamImagesAssets.add(currentScam);
+                ScamImages.add(currentScam);
 
                 Log.d("PRINTCONSOLE", "ScamImage loaded and added to list.");
 
@@ -112,58 +108,6 @@ public class ScamImages {
                 Log.e("PRINTCONSOLE", "Error loading assets from " + directoryPath, e);
             }
         }
-    }
-
-    public void loadQuestions(int questions) {
-        // reset currentimageindex
-        currentImageIndex = 0;
-
-        // make a list that will contain each number previous chosen, make sure there are no duplicates
-        List<Integer> indexPrevious = new ArrayList<>();
-        for(int i = 1; i <= questions; i++){
-            int randomIndex;
-
-            // Generate a random index and check for duplicates
-            do {
-                randomIndex = new Random().nextInt(imageCount);
-            } while (indexPrevious.contains(randomIndex)); // If the number is in indexPrevious, reroll
-
-            // Add the random image to the scamImages list
-            ScamImages.add(scamImagesAssets.get(randomIndex));
-
-            // Add the index to the set to track previous selections
-            indexPrevious.add(randomIndex);
-        }
-    }
-    public void clearQuestions() {
-        ScamImages.clear();
-        scamImagesAssets.clear();
-        currentImageIndex = 0;  // Optionally reset currentImageIndex if needed
-    }
-
-    public void clearAll() {
-        ScamImages.clear();
-        scamImagesAssets.clear();
-        currentImageIndex = 0;  // Optionally reset currentImageIndex if needed
-    }
-
-    // Method to move to the next image
-    public boolean nextImage() {
-        if (currentImageIndex + 1 == ScamImages.size()){
-            return false;
-        } else {
-            currentImageIndex = currentImageIndex + 1;
-            return true;
-        }
-    }
-
-    public void backImage(){
-        currentImageIndex = currentImageIndex - 1;
-    }
-
-    // Getter for currentImageIndex
-    public int getCurrentImageIndex() {
-        return currentImageIndex;
     }
 
     // Getter for scamImages list

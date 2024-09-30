@@ -52,10 +52,10 @@ public class LevelCompleteActivity extends AppCompatActivity {
             responseText.setText("Perfect! Incredible job.");
             congratsStars.setImageResource(R.drawable.congrats_3_stars);
         } else if (scorePercent >= 75) {
-            responseText.setText("So close! Good Effort.");
+            responseText.setText("Great job!! So close!");
             congratsStars.setImageResource(R.drawable.congrats_2_stars);
         } else if (scorePercent >= 50) {
-            responseText.setText("You're getting there!");
+            responseText.setText("Good job! You're getting there!");
             congratsStars.setImageResource(R.drawable.congrats_2_stars);
         } else if (scorePercent >= 25) {
             responseText.setText("Nice Try! Try Again?");
