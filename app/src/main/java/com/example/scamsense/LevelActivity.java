@@ -35,7 +35,6 @@ public class LevelActivity extends AppCompatActivity {
     private ImageView scamImage;
     private ImageButton scamButton;
     private ImageButton safeButton;
-    private ImageButton informationButton;
     private ImageButton menuButton;
 
     @SuppressLint({"SourceLockedOrientationActivity"})
@@ -57,7 +56,6 @@ public class LevelActivity extends AppCompatActivity {
         scamImage = findViewById(R.id.scamImage);
         scamButton = findViewById(R.id.btnScam);
         safeButton = findViewById(R.id.btnSafe);
-        informationButton = findViewById(R.id.btnInformation);
         menuButton = findViewById(R.id.menuButton);
 
         // load the screen
@@ -70,10 +68,10 @@ public class LevelActivity extends AppCompatActivity {
             if (currentImage.getScamStatus()){
                 levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
                 currentImage.setAnswer(true);
+                currentImage.setCorrect(true);
             } else{
                 currentImage.setAnswer(false);
             }
-
             currentImage.setCompleted(true);
             loadScreen(questionImages);
             popup_window(questionImages, v);
@@ -86,17 +84,13 @@ public class LevelActivity extends AppCompatActivity {
             if (!currentImage.getScamStatus()){
                 levels.getCurrentLevel().setRightAnswers(levels.getCurrentLevel().getRightAnswers() + 1);
                 currentImage.setAnswer(true);
+                currentImage.setCorrect(true);
             } else {
                 currentImage.setAnswer(false);
             }
-
             currentImage.setCompleted(true);
             loadScreen(questionImages);
             popup_window(questionImages, v);
-        });
-
-        informationButton.setOnClickListener(v -> {
-            howto_window(v);
         });
 
         menuButton.setOnClickListener(v-> {
@@ -122,8 +116,6 @@ public class LevelActivity extends AppCompatActivity {
             // load image
             loadImageFromAssets(scamImage, currentImage.getFileLocation());
 
-            // set info button to inactive
-            informationButton.setClickable(false);
         } else {
             // turn scam and safe buttons off
             scamButton.setClickable(false);
@@ -135,8 +127,6 @@ public class LevelActivity extends AppCompatActivity {
             // load overlay image
             loadImageFromAssets(scamImage, currentImage.getOverlayFileLocation());
 
-            // set info button to inactive
-            informationButton.setClickable(true);
         }
     }
 

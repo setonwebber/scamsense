@@ -12,6 +12,14 @@
     android:layout_height="match_parent"
     tools:context=".LevelCompleteActivity">
 
+    <ExpandableListView
+        android:id="@+id/viewResultsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:childDivider="#00000000"
+        android:divider="#00000000" /> <!-- add group indicator drawable when we have one? -->
+
     <ImageView
         android:id="@+id/header_title"
 
@@ -27,12 +35,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/app_header_text" />
 
-    <ExpandableListView
-        android:id="@+id/viewResultsList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:childDivider="#00000000" /> <!-- add group indicator drawable when we have one? -->
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/menu_button" />
+
+
+
+
 
 
 

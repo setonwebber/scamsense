@@ -9,6 +9,7 @@ public class ScamImage {
     private String title;
 
 
+    private boolean correct;
     private boolean completed;
     private boolean answer;
 
@@ -22,6 +23,7 @@ public class ScamImage {
         this.title = "";
 
         // these variables are always false placeholders, these will be set later.
+        this.correct = false;
         this.completed = false;
         this.answer = false;
     }
@@ -36,6 +38,7 @@ public class ScamImage {
         this.title = title;
 
         // these variables are always false placeholders, these will be set later.
+        this.correct = false;
         this.completed = false;
         this.answer = false;
     }
@@ -67,14 +70,17 @@ public class ScamImage {
     }
 
     // Setter for completed
+    public void setCorrect(boolean comp){ correct = comp; }
+
     public void setCompleted(boolean comp){ completed = comp; }
 
     // Setter for answer
     public void setAnswer(boolean answer) { this.answer = answer;}
 
     // Getter for completed
-    public boolean getCompleted(){return completed;}
+    public boolean getCorrect(){return correct;}
 
+    public boolean getCompleted(){return completed;}
     // Getter for answer
     public boolean getAnswer(){return answer;}
 }

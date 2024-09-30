@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadLevel(dataManager dataManager, int level){
-        dataManager.getScamImages().clearAll(); dataManager.getScamImages().loadImages(getAssets(), 19);
+        dataManager.getScamImages().clearAll(); dataManager.getScamImages().loadImages(getAssets(), 29);
         dataManager.getQuestionImages().clearAll();
         dataManager.getLevels().resetRightAnswers(); dataManager.getLevels().setCurrentLevel(level - 1);
         dataManager.getQuestionImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions(), dataManager.getScamImages());

@@ -1,11 +1,12 @@
 package com.example.scamsense;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ViewResults extends AppCompatActivity {
-
+    private ImageButton menuButton;
 
     @SuppressLint({"SourceLockedOrientationActivity"})
     @Override
@@ -28,47 +29,37 @@ public class ViewResults extends AppCompatActivity {
         ((View) decorView).setSystemUiVisibility(uiOptions);
 
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
-        ScamImages scamImages = dataManager.getScamImages();
+        QuestionImages questionImages = dataManager.getQuestionImages();
         Levels levels = dataManager.getLevels();
 
         ExpandableListView expandableListView = findViewById(R.id.viewResultsList);
+        menuButton = findViewById(R.id.menuButton);
 
         ArrayList<String> listGroups = new ArrayList<>();
-        listGroups.add("Group 1");
-        listGroups.add("Group 2");
-        listGroups.add("Group 3");
-        listGroups.add("Group 4");
 
-        for (int i = 0; i < scamImages.getScamImages().size(); i++) {
-            listGroups.add("Q" + (i + 1) + ": " + scamImages.getScamImages().get(i).getTitle());
+        HashMap<String, ArrayList<String>> listItems = new HashMap<>(); // Ensure this is declared before the loop
+
+        for (int i = 0; i < questionImages.getQuestionImages().size(); i++) {
+            String groupPosition = String.valueOf(i);
+            listGroups.add(groupPosition);
+
+            // Create a new ArrayList for child items related to the current group
+            ArrayList<String> childItems = new ArrayList<>();
+            // Add a child node with default value.
+            childItems.add(String.valueOf(i));
+
+            // Add the group and its child items to the HashMap
+            listItems.put(groupPosition, childItems);
         }
 
 
-        HashMap<String, ArrayList<String>> listItems = new HashMap<>();
-        ArrayList<String> childItems1 = new ArrayList<>();
-        childItems1.add("Child Title 1");
-        childItems1.add("Child Title 2");
-        childItems1.add("Child Title 3");
-        ArrayList<String> childItems2 = new ArrayList<>();
-        childItems2.add("Child Title 1");
-        childItems2.add("Child Title 2");
-        childItems2.add("Child Title 3");
-        ArrayList<String> childItems3 = new ArrayList<>();
-        childItems3.add("Child Title 1");
-        childItems3.add("Child Title 2");
-        childItems3.add("Child Title 3");
-        ArrayList<String> childItems4 = new ArrayList<>();
-        childItems4.add("Child Title 1");
-        childItems4.add("Child Title 2");
-        childItems4.add("Child Title 3");
-
-        listItems.put(listGroups.get(0), childItems1);
-        listItems.put(listGroups.get(1), childItems2);
-        listItems.put(listGroups.get(2), childItems3);
-        listItems.put(listGroups.get(3), childItems4);
-
         CustomExpandableAdapter customExpandableAdapter = new CustomExpandableAdapter(this, listGroups, listItems);
         expandableListView.setAdapter(customExpandableAdapter);
+
+        menuButton.setOnClickListener(v-> {
+            Intent intent=new Intent(ViewResults.this, LevelCompleteActivity.class);
+            startActivity(intent);
+        });
 
         expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -90,6 +81,8 @@ public class ViewResults extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 }
