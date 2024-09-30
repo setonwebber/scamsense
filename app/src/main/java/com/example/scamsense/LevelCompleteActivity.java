@@ -23,18 +23,20 @@ public class LevelCompleteActivity extends AppCompatActivity {
     @SuppressLint({"SetTextI18n", "SourceLockedOrientationActivity"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // init all activiy and viewer attributes
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_level_complete);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         View decorView = getWindow().getDecorView();
-        // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         ((View) decorView).setSystemUiVisibility(uiOptions);
 
+        // load datamanger and get objects we will need in this activity
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
         Levels levels = dataManager.getLevels();
 
+        // init all views from xml activity
         homeButton = findViewById(R.id.homeButton);
         score = findViewById(R.id.score);
         responseText = findViewById(R.id.responseText);
@@ -65,13 +67,16 @@ public class LevelCompleteActivity extends AppCompatActivity {
             congratsStars.setImageResource(R.drawable.congrats_0_stars);
         }
 
+        // if viewresults button is clicked
         resultsButton.setOnClickListener(v -> {
+            // start the viewresultsactivity
             Intent intent=new Intent(LevelCompleteActivity.this, ViewResults.class);
             startActivity(intent);
         });
 
-
+        // if home button is clicked
         homeButton.setOnClickListener(v-> {
+            // start the mainactivity
             Intent intent=new Intent(LevelCompleteActivity.this, MainActivity.class);
             startActivity(intent);
         });

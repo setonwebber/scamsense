@@ -11,8 +11,13 @@ public class Levels {
         levelList = new ArrayList<>();
     }
 
-    public void addLevel(Level level) {
-        levelList.add(level);
+    public void loadLevels() {
+        int[] questionCount = {5, 10, 20};
+        // Loop to create levelCount number of Level objects
+        for (int i = 0; i < 3; i++) {
+            Level level = new Level(questionCount[i]);
+            levelList.add(level);
+        }
     }
 
     public Level getLevel(int index) {

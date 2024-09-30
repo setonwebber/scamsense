@@ -22,47 +22,56 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint({"SourceLockedOrientationActivity"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // init all activiy and viewer attributes
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         View decorView = getWindow().getDecorView();
-        // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         ((View) decorView).setSystemUiVisibility(uiOptions);
 
+        // init datamanger
         dataManager dataManager = com.example.scamsense.dataManager.getInstance();
 
+        // init all views from xml activity
         level1Button = findViewById(R.id.level1Button);
         level2Button = findViewById(R.id.level2Button);
         level3Button = findViewById(R.id.level3Button);
 
-        int[] questionCount = {5, 10, 20};
-        // Loop to create levelCount number of Level objects
-        for (int i = 0; i < levelCount; i++) {
-            Level level = new Level(questionCount[i]);
-            dataManager.getLevels().addLevel(level);
-        }
+        // load the levels for the application
+        dataManager.getLevels.loadLevels();
 
+        // if level1button is clicked
         level1Button.setOnClickListener(v ->{
+            // load the level selected
             loadLevel(dataManager, 1);
         });
 
+        // if level2button is clicked
         level2Button.setOnClickListener(v ->{
+            // load the level selected
             loadLevel(dataManager, 2);
         });
 
+        // if level3button is clicked
         level3Button.setOnClickListener(v ->{
+            // load the level selected
             loadLevel(dataManager, 3);
         });
     }
 
     public void loadLevel(dataManager dataManager, int level){
+        // clear the scamimages list and reload it
         dataManager.getScamImages().clearAll(); dataManager.getScamImages().loadImages(getAssets(), 29);
-        dataManager.getQuestionImages().clearAll();
-        dataManager.getLevels().resetRightAnswers(); dataManager.getLevels().setCurrentLevel(level - 1);
-        dataManager.getQuestionImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions(), dataManager.getScamImages());
 
+        // reset the rightanswers value for all levels and set the current level 
+        dataManager.getLevels().resetRightAnswers(); dataManager.getLevels().setCurrentLevel(level - 1);
+
+        // clear questionsimages and load questionsimages with the level selected
+        dataManager.getQuestionImages().clearAll(); dataManager.getQuestionImages().loadQuestions(dataManager.getLevels().getCurrentLevel().getQuestions(), dataManager.getScamImages());
+
+        // start the levelactivity
         Intent intent=new Intent(MainActivity.this, LevelActivity.class);
         startActivity(intent);
     }
