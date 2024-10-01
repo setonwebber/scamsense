@@ -23,41 +23,49 @@ public class CustomExpandableAdapter extends BaseExpandableListAdapter {
     dataManager dataManager = com.example.scamsense.dataManager.getInstance();
     QuestionImages questionImages = dataManager.getQuestionImages();
 
+    //init variables
     private Context context;
     private ArrayList<String> listGroups;
     private HashMap<String, ArrayList<String>> listItems;
 
+    //constructor for expandable adapter
     public CustomExpandableAdapter(Context context, ArrayList<String> listGroups, HashMap<String, ArrayList<String>> listItems) {
         this.context = context;
         this.listGroups = listGroups;
         this.listItems = listItems;
     }
 
+    //method to get number of groups
     @Override
     public int getGroupCount() {
         return listGroups.size();
     }
 
+    //method to get number of children under specific group
     @Override
     public int getChildrenCount(int groupPosition) {
         return listItems.get(listGroups.get(groupPosition)).size();
     }
 
+    //method to return group from a given position
     @Override
     public Object getGroup(int groupPosition) {
         return listGroups.get(groupPosition);
     }
 
+    //method to return child from a given position
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return listItems.get(listGroups.get(groupPosition)).get(childPosition);
     }
 
+    //method to get a group ID
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
+    //method to get a child ID
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
@@ -78,11 +86,13 @@ public class CustomExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         if(currentImage.getCorrect()){
+            //sets background color to green
             convertView.setBackgroundColor(Color.parseColor("#68dd65"));
         } else {
+            //sets background color to red
             convertView.setBackgroundColor(Color.parseColor("#dd6565"));
         }
-
+        //sets group name to title of scam
         TextView parentTitle = convertView.findViewById(R.id.ParentTitle);
         parentTitle.setText(currentImage.getTitle().substring(8));
 
@@ -100,8 +110,10 @@ public class CustomExpandableAdapter extends BaseExpandableListAdapter {
         }
 
         if(currentImage.getCorrect()){
+            //sets background color to green
             convertView.setBackgroundColor(Color.parseColor("#68dd65"));
         } else {
+            //sets background color to red
             convertView.setBackgroundColor(Color.parseColor("#dd6565"));
         }
         TextView childTitle = convertView.findViewById(R.id.ChildTitle);
