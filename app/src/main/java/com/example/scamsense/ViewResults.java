@@ -85,8 +85,4 @@ public class ViewResults extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }
